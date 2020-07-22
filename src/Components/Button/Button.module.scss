@@ -1,0 +1,75 @@
+@mixin spanStyle($top,$left,$right,$bottom,$width,$height,$direction,$animationName,$animationDelay){
+  position: absolute;
+  top:$top;
+  left:$left;
+  right:$right;
+  bottom:$bottom;
+  width: $width;
+  height:$height;
+  background:linear-gradient(to $direction,#0c002b,#1779ff);
+  animation: $animationName linear 2s infinite;
+  animation-delay: $animationDelay;
+}
+@mixin animation($value1,$value2,$isXcordinate){
+  @if $isXcordinate == 1{
+    from {transform:translateX($value1);}
+    to {transform: translateX($value2);}
+  }@else{
+    from {transform:translateY($value1);}
+    to {transform: translateY($value2);}
+  }
+}
+
+.button{
+  padding: 10px 15px;
+  cursor: pointer;
+  text-decoration: none;
+  color:#1670f0;
+  text-transform: uppercase;
+  font-weight: 500;
+  box-shadow: 0 20px 50px rgba(0,0,0,.5);
+  position: relative;
+  background-color: #0c002b;
+  border:0;
+  outline: none;
+  margin:0 10px;
+  overflow: hidden;
+  &::before{
+    content:'';
+    position: absolute;
+    top:2px;
+    left:2px;
+    bottom:2px;
+    width: 50%;
+    background-color: rgba(255,255,255,.05);
+  }
+  &:hover{
+    background-color: #120040;
+    transition: .3s;
+  }
+  span:nth-child(1){
+    @include spanStyle(0,0,auto,auto,100%,2px,right,move1,0);
+  }
+  span:nth-child(2){
+    @include spanStyle(0,auto,0,auto,2px,100%,bottom,move2,1s);
+  }
+  span:nth-child(3){
+    @include spanStyle(auto,0,auto,0,100%,2px,left,move3,0);
+  }
+  span:nth-child(4){
+    @include spanStyle(0,0,auto,auto,2px,100%,top,move4,1s);
+  }
+}
+@keyframes move1 {
+  @include animation(-100%,100%,1);
+}
+@keyframes move2 {
+  @include animation(-100%,100%,0);
+}
+@keyframes move3 {
+  @include animation(100%,-100%,1);
+}
+
+@keyframes move4 {
+  @include animation(100%,-100%,0);
+}

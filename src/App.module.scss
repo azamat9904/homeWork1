@@ -1,0 +1,16 @@
+.app{
+  background-color: #0c002b;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  &__container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 10px;
+  }
+  &__info{
+    margin-top: 30px;
+    padding: 15px;
+  }
+}
